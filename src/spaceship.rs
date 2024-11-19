@@ -1,6 +1,14 @@
 use crate::movement::Velocity;
 use bevy::prelude::*;
 
+const INITIAL_TRANSLATION: Vec3 = Vec3::new(0.0, 0.0, -20.0);
+const INITIAL_VELOCITY: Vec3 = Vec3::new(0.0, 0.0, 1.0);
+
+#[derive(Bundle)]
+pub struct SpaceshipBundle {
+    model: SceneBundle,
+}
+
 // ================================
 // ======= SpaceshipPlugin ========
 // ================================
@@ -12,11 +20,16 @@ impl Plugin for SpaceshipPlugin {
     }
 }
 
-pub fn spawn_spaceship(mut commands: Commands) {
+pub fn spawn_spaceship(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn((
-        SpriteBundle {
+        SceneBundle {
+            transform: Transform {
+                translation: INITIAL_TRANSLATION,
+                ..Default::default()
+            },
+            scene: asset_server.load(""),
             ..Default::default()
         },
-        Velocity::default(),
+        Velocity::from(INITIAL_VELOCITY),
     ));
 }
