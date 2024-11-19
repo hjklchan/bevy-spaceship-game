@@ -21,6 +21,10 @@ impl Plugin for SpaceshipPlugin {
 }
 
 pub fn spawn_spaceship(mut commands: Commands, asset_server: Res<AssetServer>) {
+    // spawn a new spaceship
+    //  - SceneBundle   #bevy
+    //  - Velocity      #custom
+    //  - Movement      #custom
     commands.spawn((
         SceneBundle {
             transform: Transform {
