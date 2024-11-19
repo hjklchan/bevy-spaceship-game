@@ -12,5 +12,11 @@ impl Plugin for MovementPlugin {
 
 #[derive(Component, Debug, Default)]
 pub struct Velocity {
-    value: Vec3,
+    pub value: Vec3,
+}
+
+impl From<Vec3> for Velocity {
+    fn from(value: Vec3) -> Self {
+        Self { value }
+    }
 }
