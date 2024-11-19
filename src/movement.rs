@@ -9,6 +9,9 @@ impl Plugin for MovementPlugin {
     fn build(&self, app: &mut App) {}
 }
 
+// Movement marking component
+#[derive(Component)]
+pub struct Movement;
 
 #[derive(Component, Debug, Default)]
 pub struct Velocity {

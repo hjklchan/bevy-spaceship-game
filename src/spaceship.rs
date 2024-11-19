@@ -1,4 +1,4 @@
-use crate::movement::Velocity;
+use crate::movement::{Movement, Velocity};
 use bevy::prelude::*;
 
 const INITIAL_TRANSLATION: Vec3 = Vec3::new(0.0, 0.0, -20.0);
@@ -30,6 +30,7 @@ pub fn spawn_spaceship(mut commands: Commands, asset_server: Res<AssetServer>) {
             scene: asset_server.load(""),
             ..Default::default()
         },
-        Velocity::from(INITIAL_VELOCITY),
+        Velocity::from(INITIAL_VELOCITY), // with Velocity
+        Movement, // with Movement mark
     ));
 }
