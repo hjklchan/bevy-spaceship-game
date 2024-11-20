@@ -17,11 +17,11 @@ fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
         // change background color
-        .insert_resource(ClearColor(Color::srgb_u8(25, 25, 112)))
+        .insert_resource(ClearColor(Color::srgb(0.1, 0.0, 0.15)))
         // add light
         .insert_resource(AmbientLight {
-            color: Color::srgb_u8(138, 43, 226),
-            brightness: 0.75,
+            color: Default::default(),
+            brightness: 100.0,
         })
         // Customized plugins for develops
         .add_plugins(AssetLoaderPlugin)

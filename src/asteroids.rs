@@ -60,7 +60,7 @@ fn spawn_asteroid(
 
         let mut random_unit_vector3 =
             || Vec3::new(rng.gen_range(-1.0..1.0), 0.0, rng.gen_range(-1.0..1.0));
-        let random_velocity = random_unit_vector3();
+        let random_velocity = random_unit_vector3() * 5.0;
         let random_acceleration = random_unit_vector3();
 
         commands.spawn((
