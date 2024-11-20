@@ -20,6 +20,12 @@ pub struct Velocity {
     pub value: Vec3,
 }
 
+impl Velocity {
+    pub fn new(value: Vec3) -> Self {
+        Self { value }
+    }
+}
+
 impl From<Vec3> for Velocity {
     fn from(value: Vec3) -> Self {
         Self { value }
