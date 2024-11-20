@@ -6,6 +6,7 @@ const INITIAL_VELOCITY: Vec3 = Vec3::new(0.0, 0.0, 1.0);
 
 #[derive(Bundle)]
 pub struct SpaceshipBundle {
+    velocity: Velocity,
     model: SceneBundle,
 }
 
@@ -20,11 +21,16 @@ impl Plugin for SpaceshipPlugin {
     }
 }
 
+/// # spawn a new spaceship
+/// 
+/// *TODO: create a new bundle to encapsulate the following components*,
+/// just like [`SpaceshipBundle`] structure.
+///
+/// Components:
+/// - SceneBundle   #bevy
+/// - Velocity      #custom
+/// - Movement      #custom
 pub fn spawn_spaceship(mut commands: Commands, asset_server: Res<AssetServer>) {
-    // spawn a new spaceship
-    //  - SceneBundle   #bevy
-    //  - Velocity      #custom
-    //  - Movement      #custom
     commands.spawn((
         SceneBundle {
             transform: Transform {
