@@ -3,7 +3,7 @@ use std::ops::Range;
 use bevy::{prelude::*, window::PrimaryWindow};
 use rand::Rng;
 
-use crate::movement::{Acceleration, Movement, MovementBundle, Velocity};
+use crate::{asset_loader::SceneAssets, movement::{Acceleration, Movement, MovementBundle, Velocity}};
 
 const SPAWN_RANGE_X: Range<f32> = -25.0..25.0;
 const SPAWN_FIXED_Y: f32 = 10.0;
@@ -41,7 +41,7 @@ impl Default for SpawnTimer {
 
 fn spawn_asteroid(
     mut commands: Commands,
-    asset_server: Res<AssetServer>,
+    scene_assets: Res<SceneAssets>,
     mut spawn_timer: ResMut<SpawnTimer>,
     time: Res<Time>,
     window: Query<&Window, With<PrimaryWindow>>,
@@ -71,7 +71,7 @@ fn spawn_asteroid(
                 mark: Movement,
             },
             SceneBundle {
-                scene: asset_server.load("Asteroid.glb#Scene0"),
+                scene: scene_assets.asteroid.clone(),
                 transform: Transform {
                     translation,
                     ..Default::default()

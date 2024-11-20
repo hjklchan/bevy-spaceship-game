@@ -3,10 +3,12 @@ mod debug;
 mod movement;
 mod spaceship;
 mod asteroids;
+mod asset_loader;
 
 use crate::debug::DebugPlugin;
 use crate::movement::MovementPlugin;
 use crate::spaceship::SpaceshipPlugin;
+use asset_loader::AssetLoaderPlugin;
 use asteroids::AsteroidsPlugin;
 use bevy::prelude::*;
 use camera::CameraPlugin;
@@ -22,6 +24,7 @@ fn main() {
             brightness: 0.75,
         })
         // Customized plugins for develops
+        .add_plugins(AssetLoaderPlugin)
         .add_plugins(CameraPlugin)
         .add_plugins(SpaceshipPlugin)
         .add_plugins(AsteroidsPlugin)
