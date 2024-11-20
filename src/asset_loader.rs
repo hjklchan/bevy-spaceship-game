@@ -17,7 +17,7 @@ pub struct SceneAssets {
 
 fn load_scene_assets(asset_server: Res<AssetServer>, mut scene_assets: ResMut<SceneAssets>) {
     let asteroid = asset_server.load::<Scene>("Asteroid.glb#Scene0");
-    let spaceship = asset_server.load::<Scene>("Asteroid.glb#Scene0");
+    let spaceship = asset_server.load::<Scene>("Spaceship.glb#Scene0");
     
     *scene_assets = SceneAssets {
         asteroid,
