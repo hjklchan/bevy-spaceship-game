@@ -37,7 +37,7 @@ pub fn spawn_spaceship(mut commands: Commands, asset_server: Res<AssetServer>) {
                 translation: INITIAL_TRANSLATION,
                 ..Default::default()
             },
-            scene: asset_server.load(""),
+            scene: asset_server.load("Spaceship.glb#Scene0"),
             ..Default::default()
         },
         Velocity::from(INITIAL_VELOCITY), // with Velocity
