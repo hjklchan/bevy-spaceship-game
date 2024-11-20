@@ -29,7 +29,7 @@ impl Plugin for SpaceshipPlugin {
 /// Components:
 /// - SceneBundle       #bevy
 /// - MovementBundle    #custom
-pub fn spawn_spaceship(mut commands: Commands, scene_assets: Res<SceneAssets>) {
+fn spawn_spaceship(mut commands: Commands, scene_assets: Res<SceneAssets>) {
     commands.spawn((
         SceneBundle {
             transform: Transform {

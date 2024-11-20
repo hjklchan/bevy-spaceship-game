@@ -54,7 +54,7 @@ fn update_position(mut query: Query<(&mut Transform, &Velocity), With<Movement>>
     let delta = time.delta_seconds();
 
     for (mut transform, velocity) in query.iter_mut() {
-        transform.translation += velocity.value.normalize_or_zero() * delta;
+        transform.translation += velocity.value * delta;
     }
 }
 

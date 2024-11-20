@@ -3,7 +3,10 @@ use std::ops::Range;
 use bevy::{prelude::*, window::PrimaryWindow};
 use rand::Rng;
 
-use crate::{asset_loader::SceneAssets, movement::{Acceleration, Movement, MovementBundle, Velocity}};
+use crate::{
+    asset_loader::SceneAssets,
+    movement::{Acceleration, Movement, MovementBundle, Velocity},
+};
 
 const SPAWN_RANGE_X: Range<f32> = -25.0..25.0;
 const SPAWN_FIXED_Y: f32 = 10.0;
@@ -58,10 +61,11 @@ fn spawn_asteroid(
         let random_z = rng.gen_range(0.0..25.0);
         let translation = Vec3::new(random_x, 0.0, random_z);
 
-        let mut random_unit_vector3 =
-            || Vec3::new(rng.gen_range(-1.0..1.0), 0.0, rng.gen_range(-1.0..1.0));
+        let mut random_unit_vector3 = || {
+            Vec3::new(rng.gen_range(-1.0..1.0), 0.0, rng.gen_range(-1.0..1.0)).normalize_or_zero()
+        };
         let random_velocity = random_unit_vector3() * 5.0;
-        let random_acceleration = random_unit_vector3();
+        let random_acceleration = random_unit_vector3() * 1.0;
 
         commands.spawn((
             Asteroid,
@@ -77,7 +81,7 @@ fn spawn_asteroid(
                     ..Default::default()
                 },
                 ..Default::default()
-            }
+            },
         ));
 
         // Send spawning event
@@ -86,12 +90,16 @@ fn spawn_asteroid(
 }
 
 /// spawn_plan
-/// 
+///
 /// TODO: Test whether the system will resume generating entities.
-/// 
+///
 /// - The number of asteroid entities should be limited.
 /// - Pause the [`SpawnTimer`] if number of asteroid entities gt than or eq to [`MAX_NUM_PRESENT`].
-fn spawn_plan(mut spawn_timer: ResMut<SpawnTimer>, query: Query<(), With<Asteroid>>, mut spawn_event: EventReader<SpawnEvent>) {
+fn spawn_plan(
+    mut spawn_timer: ResMut<SpawnTimer>,
+    query: Query<(), With<Asteroid>>,
+    mut spawn_event: EventReader<SpawnEvent>,
+) {
     // If entity has been spawned,
     // Then query currently number of entities.
     for _ in spawn_event.read() {
