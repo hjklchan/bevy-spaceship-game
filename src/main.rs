@@ -2,10 +2,12 @@ mod camera;
 mod debug;
 mod movement;
 mod spaceship;
+mod asteroids;
 
 use crate::debug::DebugPlugin;
 use crate::movement::MovementPlugin;
 use crate::spaceship::SpaceshipPlugin;
+use asteroids::AsteroidsPlugin;
 use bevy::prelude::*;
 use camera::CameraPlugin;
 
@@ -22,6 +24,7 @@ fn main() {
         // Customized plugins for develops
         .add_plugins(CameraPlugin)
         .add_plugins(SpaceshipPlugin)
+        .add_plugins(AsteroidsPlugin)
         .add_plugins(MovementPlugin)
         .add_plugins(DebugPlugin)
         .run();
